@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> </title>
+</head>
+<body>
+<canvas id="myCanvas" width= "2000" height= "1000">
+
+	
+
+
+
+</canvas>
+
+<script>
+	var canvas = document.getElementById("myCanvas");
+var ctx =canvas.getContext("2d");
+
+
+ctx.beginPath();
+ctx.rect(0, 0, 2000, 1000);
+ctx.fillStyle = "black";
+ctx.fill();
+
+
+
+function drawCircle(x_coordinate,y_coordinate,radius) {
+ctx.beginPath();
+ctx.ellipse(x_coordinate, y_coordinate, radius, radius, 45 * Math.PI/180, 0, 2 * Math.PI);
+ctx.strokeStyle= "white";
+ctx.stroke();
+
+
+
+
+}
+
+
+
+
+canvas.addEventListener('click', function(click1) {
+
+	 x_coordinate = click1.pageX;
+	y_coordinate = click1.pageY;
+	radius = 10;
+	x.push(x_coordinate);
+	y.push(y_coordinate);
+	r.push(radius);
+
+
+
+	//window.alert(" hi "
+	//+ x_coordinate+ " hi2 " + y_coordinate);
+
+
+	drawCircle(x_coordinate,y_coordinate,radius);
+
+
+
+
+
+});
+
+
+var x = [];
+var y = [];
+var r = [];
+
+function step(timestamp) {
+ctx.beginPath();
+ ctx.rect(0, 0, 2000, 1000);
+ctx.fillStyle = "black";
+ctx.fill();
+	//var x_coordinate = click1.pageX;
+	//var y_coordinate = click1.pageY;
+
+
+
+
+
+
+
+for  (i = 0; i < x.length; i++ ) {
+
+
+r[i] = r[i]+0.5233034029065935;
+
+                                                                                                                                                                                      
+drawCircle(x[i],y[i],r[i]);
+
+
+//var d= Math.sqrt((x1 - x2)*(x1 - x2) + (y1- y2)* (y1 - y2));
+//var l= (r1*r1 - r2 *r2 + d*d)/ (d*2); 
+//var h= Math.sqrt(r1*r1-l*l);
+//var x3= l/d * (x2-x1) + h/d*(y2-y1) + x1;
+//var x4= l/d * (x2-x1) -h/d*(y2-y1) + x1;
+//var y3= l/d *(y2-y1)- h/d*(x2-x1) + y1;
+//var y4= l/d *(y2-y1)+ h/d*(x2-x1) + y1;
+
+
+
+
+
+
+
+
+
+
+	}
+	
+for (var i = 0;i< x.length;i++) {
+	for (var j = i+1; j < x.length; j++) {
+var r1= r[i];		
+var y1= y[i];	
+var x1= x[i];	
+var x2= x[j];	
+var y2= y [j];
+var r2= r[j];
+var d= Math.sqrt((x1 - x2)*(x1 - x2) + (y1- y2)* (y1 - y2));
+var l= (r1*r1 - r2 *r2 + d*d)/ (d*2); 
+var h= Math.sqrt(r1*r1-l*l);
+var x3= l/d * (x2-x1) + h/d*(y2-y1) + x1;
+var x4= l/d * (x2-x1) -h/d*(y2-y1) + x1;
+var y3= l/d *(y2-y1)- h/d*(x2-x1) + y1;
+var y4= l/d *(y2-y1)+ h/d*(x2-x1) + y1;
+ctx.beginPath();
+ctx.ellipse(x3, y3, 5, 5, 45 * Math.PI/180, 0, 2 * Math.PI);
+ctx.fillStyle= "yellow";
+ctx.fill();
+ctx.beginPath();
+ctx.ellipse(x4, y4, 5, 5, 45 * Math.PI/180, 0, 2 * Math.PI);
+ctx.fillStyle= "green";
+ctx.fill();
+
+
+
+	}
+}
+
+
+ window.requestAnimationFrame(step);
+
+
+
+}
+
+
+window.requestAnimationFrame(step);
+
+</script>
+
+
+</body>
+</html>
